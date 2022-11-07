@@ -1,4 +1,8 @@
-
+/*
+LINGUAGEM DE PROGRAMAÇÃO ORIENTADA A OBJETOS
+TRABALHO 1: CALCULADORA
+ALUNO: MARCOS FELIPE LOPES RODRIGUES GRR20211592
+*/
 package calculadora;
 
 import java.awt.event.ActionEvent;
@@ -13,7 +17,7 @@ public class FrameCalculadora extends javax.swing.JFrame implements ActionListen
     
     private int num1 = 0, num2 = 0;
     private char sinal = '+';
-    private int num;
+
     
     private void digita (String caractere){
         display.setText(display.getText().concat(caractere));           
@@ -267,73 +271,77 @@ public class FrameCalculadora extends javax.swing.JFrame implements ActionListen
     public void actionPerformed(ActionEvent e) {
                 
         if((estadoCal == EstadoCalculadora.ENTRADA1)||(estadoCal == EstadoCalculadora.ENTRADA2)){
-            if(e.getSource()==bt0){
+            if(e.getSource()==bt0)
                 digita("0");
-            }
-            if(e.getSource()==bt1){
+            
+            if(e.getSource()==bt1)
                 digita("1");
-            }
-            if(e.getSource()==bt2){
+            
+            if(e.getSource()==bt2)
                 digita("2");
-            }
-            if(e.getSource()==bt3){
+            
+            if(e.getSource()==bt3)
                  digita("3");
-            }
-            if(e.getSource()==bt4){
+            
+            if(e.getSource()==bt4)
                  digita("4");
-            }
-            if(e.getSource()==bt5){
+            
+            if(e.getSource()==bt5)
                  digita("5");
-            }
-            if(e.getSource()==bt6){
+            
+            if(e.getSource()==bt6)
                  digita("6");
-            }
-            if(e.getSource()==bt7){
+            
+            if(e.getSource()==bt7)
                  digita("7");
-            }
-            if(e.getSource()==bt8){
+            
+            if(e.getSource()==bt8)
                  digita("8");
-            }
-            if(e.getSource()==bt9){
+            
+            if(e.getSource()==bt9)
                  digita("9");
-            }
+            
             
             if((e.getSource()==btSub)||(e.getSource()==btSoma)||(e.getSource()==btMult)||(e.getSource()==btDiv)){              
                 if(((e.getSource()==btMult)||(e.getSource()==btDiv))&&(display.getText().equals(""))){
+                    display.setText("Erro");
                     estadoCal = EstadoCalculadora.IGNORADO;
                 }
-                else if((e.getSource()==btSoma)&&(display.getText().equals(""))){
+                else if((e.getSource()==btSoma)&&(display.getText().equals("")))
                     digita("+"); 
-                }
-                else if((e.getSource()==btSub)&&(display.getText().equals(""))){
+                
+                else if((e.getSource()==btSub)&&(display.getText().equals("")))
                     digita("-");
-                }
-                else {    
+                
+                else     
                     estadoCal = EstadoCalculadora.OPERADOR;
-                }        
+                       
             }
             if(e.getSource()==btResult){
             estadoCal = EstadoCalculadora.CALCULANDO;
             num2 = Integer.parseInt(display.getText());
-            
-                if(sinal == '+'){
+                if((sinal == '/')&&((num1 == 0) ||(num2 == 0)))
+                    display.setText("Erro");
+                
+                if(sinal == '+')
                      display.setText(String.valueOf(num1 + num2));
-                }
-                else if(sinal == '-'){
+                
+                else if(sinal == '-')
                     display.setText(String.valueOf(num1 - num2));
-                }
-                else if(sinal == 'x'){
+                
+                else if(sinal == 'x')
                     display.setText(String.valueOf(num1 * num2));
-                }
-                else if(sinal == '/'){
+                
+                else if(sinal == '/')
                     display.setText(String.valueOf(num1 / num2));
-                } 
+                 
                 estadoCal = EstadoCalculadora.ENTRADA1;   
             }
                            
         }
                
-        if(estadoCal == EstadoCalculadora.OPERADOR){    
+        if(estadoCal == EstadoCalculadora.OPERADOR){ 
+            
             if(e.getSource()==btSoma){
                  num1 = Integer.parseInt(display.getText());
                  display.setText("");
